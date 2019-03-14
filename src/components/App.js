@@ -1,13 +1,14 @@
 import React from 'react';
-import '../stylesheets/reset.css';
+import Header from './header';
+import '../assets/stylesheets/reset.css';
+import '../assets/stylesheets/index.css';
 
 class App extends React.Component {
   render() {
+    const logo = require('../assets/images/ToT.svg');
     return (
       <div className="app">
-        <header className="app-header">
-          Tower of Hanoi
-        </header>
+        <Header delay={500}/>
       </div>
     );
   }

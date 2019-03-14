@@ -1,0 +1,29 @@
+/* Common */
+.hidden {
+    opacity: 0;
+    transition: 0.5s all ease-in;
+}
+
+/* Header */
+#app-header {
+    display: flex;
+    height: 2em;
+    justify-content: center;
+    margin-top: .5em;
+    transition: 0.5s all ease-in;
+}
+
+#app-header img {
+    width: 1em;
+}
+
+#app-header h1 {
+    color: #fff;
+    font: .8em 'Exo', sans-serif;
+    margin: auto 0.1em;
+    text-transform: uppercase;
+}
+/* Panel */
+
+
+/* Playground */
