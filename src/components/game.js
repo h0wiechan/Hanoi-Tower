@@ -1,4 +1,6 @@
 import React from 'react';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
 import Tower from './tower';
 class Game extends React.Component {
   constructor(props) {
@@ -30,4 +32,4 @@ class Game extends React.Component {
   }
 }
 
-export default Game;
+export default DragDropContext(HTML5Backend)(Game);

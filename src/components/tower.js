@@ -1,6 +1,21 @@
 import React from 'react';
+import { DropTarget } from 'react-dnd';
 import { createArrayOfLength } from '../util/general_util';
 import Disc from './disc';
+
+const moveDisc = () => {
+  return;
+}
+
+const towerTarget = {
+  drop: (props, monitor) => {
+    moveDisc();
+  }
+}
+
+const collect = (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget()
+})
 class Tower extends React.Component {
   constructor(props) {
     super(props);
@@ -37,12 +52,13 @@ class Tower extends React.Component {
   }
 
   render() {
-    return (
-      <ul id={`tower-${this.props.idx}`} className={this.state.loaded ? 'tower' : 'tower hidden'} style={{}}>
+    const { connectDropTarget } = this.props;
+    return connectDropTarget(
+      <ul id={`tower-${this._reactInternalFiber.key}`} className={this.state.loaded ? 'tower' : 'tower hidden'} style={{}}>
         {this.generateDiscs()}
       </ul>
     )
   }
 }
 
-export default Tower;
+export default DropTarget('disc-and-tower', towerTarget, collect)(Tower);
