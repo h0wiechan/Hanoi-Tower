@@ -8,13 +8,15 @@ const moveDisc = () => {
 }
 
 const towerTarget = {
-  drop: (props, monitor) => {
-    moveDisc();
-  }
+  // drop: (props, monitor) => {
+  //   moveDisc();
+  // }
 }
 
 const collect = (connect, monitor) => ({
-  connectDropTarget: connect.dropTarget()
+  connectDropTarget: connect.dropTarget(),
+  hovered: monitor.isOver(),
+  item: monitor.getItem(),
 })
 class Tower extends React.Component {
   constructor(props) {
@@ -52,9 +54,10 @@ class Tower extends React.Component {
   }
 
   render() {
-    const { connectDropTarget } = this.props;
+    const { connectDropTarget, hovered, item } = this.props;
+    const style = hovered ? { background: '#a1a1a1', borderBottomColor: '#a1a1a1' } : {};
     return connectDropTarget(
-      <ul id={`tower-${this._reactInternalFiber.key}`} className={this.state.loaded ? 'tower' : 'tower hidden'} style={{}}>
+      <ul id={`tower-${this._reactInternalFiber.key}`} className={this.state.loaded ? 'tower' : 'tower hidden'} style={style}>
         {this.generateDiscs()}
       </ul>
     )

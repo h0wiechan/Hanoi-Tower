@@ -7,7 +7,8 @@ const discSource = {
     return {};
   },
   endDrag: (props, monitor, component) => {
-    console.log('DROPPED')
+    if (!monitor.didDrop()) return;
+    console.log('DROPPED');
     return {};
   },
 }
