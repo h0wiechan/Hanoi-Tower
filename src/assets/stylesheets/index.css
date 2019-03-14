@@ -32,7 +32,7 @@
     background: #e5e5e5;
     border-radius: 1em;
     display: flex;
-    height: 25em;
+    height: 20em;
     margin: 0 auto;
     justify-content: space-around;
     width: 60em;
@@ -45,11 +45,12 @@
     border-right: 9em solid #e5e5e5;
     border-bottom: 2em solid black;
     width: 15em;
-    height: 22em;
+    height: 15em;
     transition: 0.5s all ease-in;
 }
 
 #playground .tower .disc {
-    height: 1.0em;
+    height: 1.8em;
     position: relative;
+    transition: 0.5s all ease-in;
 }

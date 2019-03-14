@@ -1,5 +1,6 @@
 import React from 'react';
 import { createArrayOfLength } from '../util/general_util';
+import Disc from './disc';
 class Tower extends React.Component {
   constructor(props) {
     super(props);
@@ -23,13 +24,14 @@ class Tower extends React.Component {
   }
 
   generateDiscs() {
+    const array = createArrayOfLength(this.props.noOfDiscs);
     return (
-      createArrayOfLength(this.props.noOfDiscs).map((i) => {
+      array.map((i) => {
         const style = {
           background: this.colors[i],
           transform: `scaleX(${2.0 + 1 * i})`,
         }
-        return <li key={i} className="disc" style={style}></li>
+        return <Disc key={i} styling={style} delay={this.props.delay + 250 * (array.length - (i + 1))} />
       })
     )
   }

@@ -16,7 +16,7 @@ class Game extends React.Component {
   startGame() {
     return (
       [0, 1, 2].map((n) => (
-        <Tower idx={n} delay={this.props.delay + 500} noOfDiscs={n === 0 ? this.noOfDiscs : 0}/>
+        <Tower key={n} delay={this.props.delay + 500} noOfDiscs={n === 0 ? this.noOfDiscs : 0}/>
       ))
     );
   }
