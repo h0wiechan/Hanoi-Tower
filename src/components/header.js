@@ -7,6 +7,7 @@ class Header extends React.Component {
       loaded: false,
     }
   }
+  
   componentDidMount() {
     setTimeout(() => this.setState({loaded: true}), this.props.delay);
   }

@@ -22,7 +22,16 @@
     margin: auto 0.1em;
     text-transform: uppercase;
 }
+
 /* Panel */
 
 
 /* Playground */
+#playground {
+    background: #e5e5e5;
+    border-radius: 1em;
+    display: flex;
+    height: 25em;
+    margin: 0 12.5em;
+    transition: 0.5s all ease-in;
+}
