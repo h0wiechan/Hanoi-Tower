@@ -50,8 +50,6 @@
 }
 
 #playground .tower .disc {
-    background: red;
     height: 1.0em;
     position: relative;
-    transform: scaleX(2);
 }
