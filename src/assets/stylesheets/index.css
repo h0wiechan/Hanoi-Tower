@@ -28,10 +28,30 @@
 
 /* Playground */
 #playground {
+    align-items: flex-end;
     background: #e5e5e5;
     border-radius: 1em;
     display: flex;
     height: 25em;
-    margin: 0 12.5em;
+    margin: 0 auto;
+    justify-content: space-around;
+    width: 60em;
     transition: 0.5s all ease-in;
+}
+
+#playground .tower {
+    background: black;
+    border-left: 9em solid #e5e5e5;
+    border-right: 9em solid #e5e5e5;
+    border-bottom: 2em solid black;
+    width: 15em;
+    height: 22em;
+    transition: 0.5s all ease-in;
+}
+
+#playground .tower .disc {
+    background: red;
+    height: 1.0em;
+    position: relative;
+    transform: scaleX(2);
 }
