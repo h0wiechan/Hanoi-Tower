@@ -1,16 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
+import { moveDiscFrom, resetForNextMove } from '../actions/game_actions';
 import { createArrayOfLength } from '../util/general_util';
 import Disc from './disc';
 
-const moveDisc = () => {
-  return;
-}
-
 const towerTarget = {
-  // drop: (props, monitor) => {
-  //   moveDisc();
-  // }
+  drop: (props, monitor, component) => {
+    props.setEndTower(props.idx);
+    console.log('C')
+  }
 }
 
 const collect = (connect, monitor) => ({
@@ -18,11 +17,20 @@ const collect = (connect, monitor) => ({
   hovered: monitor.isOver(),
   item: monitor.getItem(),
 })
+
+const msp = (state) => ( state.game );
+
+const mdp = (dispatch) => ({
+  moveDiscFrom: (tower) => dispatch(moveDiscFrom(tower)),
+  resetForNextMove: () => dispatch(resetForNextMove()),
+});
+
 class Tower extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        loaded: false,
+      loaded: false,
+      discs: createArrayOfLength(this.props.noOfDiscs),
     }
     this.colors = {
       0: '#E02936', // red
@@ -40,15 +48,31 @@ class Tower extends React.Component {
     setTimeout(() => this.setState({loaded: true}), this.props.delay);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.startTower && typeof nextProps.startTower === 'number') {
+      this.setState({
+        discs: nextProps.status[nextProps.idx]
+      });
+      this.props.resetForNextMove();
+    }
+  }
+
   generateDiscs() {
-    const array = createArrayOfLength(this.props.noOfDiscs);
+    this.idx = this.props.idx;
     return (
-      array.map((i) => {
+      this.state.discs.map((i) => {
         const style = {
           background: this.colors[i],
           transform: `scaleX(${2.0 + 1 * i})`,
         }
-        return <Disc key={i} styling={style} delay={this.props.delay + 250 * (array.length - (i + 1))} />
+        return <Disc key={i} 
+                     i={this.state.discs.indexOf(i)}
+                     tower={this.idx}
+                     towerHeight={this.state.discs.length}
+                     styling={style} 
+                     delay={this.props.delay + 250 * (this.state.discs.length - (i + 1))} 
+                     moveDiscFrom={(tower) => this.props.moveDiscFrom(tower)}
+                    />
       })
     )
   }
@@ -64,4 +88,4 @@ class Tower extends React.Component {
   }
 }
 
-export default DropTarget('disc-and-tower', towerTarget, collect)(Tower);
+export default DropTarget('disc-and-tower', towerTarget, collect)(connect(msp, mdp)(Tower));
