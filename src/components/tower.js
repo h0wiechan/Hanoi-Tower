@@ -74,7 +74,7 @@ class Tower extends React.Component {
                      tower={this.idx}
                      towerHeight={this.state.discs.length}
                      styling={style} 
-                     delay={this.props.delay + 250 * (this.state.discs.length - (i + 1))} 
+                     delay={this.props.delay + 100 * (this.state.discs.length - (i + 1))} 
                      moveDiscFrom={(tower) => this.props.moveDiscFrom(tower)}
                     />
       })

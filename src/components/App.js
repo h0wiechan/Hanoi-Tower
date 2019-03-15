@@ -6,7 +6,6 @@ import '../assets/stylesheets/index.css';
 
 class App extends React.Component {
   render() {
-    const logo = require('../assets/images/ToT.svg');
     return (
       <div className="app">
         <Header delay={500}/>

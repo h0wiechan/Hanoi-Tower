@@ -6,6 +6,8 @@ import { setEndTower } from '../actions/game_actions';
 import { createArrayOfLength } from '../util/general_util';
 import Tower from './tower';
 
+const msp = (state) => ( state.game );
+
 const mdp = (dispatch) => ({
   setEndTower: (tower) => dispatch(setEndTower(tower)),
 });
@@ -13,7 +15,6 @@ const mdp = (dispatch) => ({
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.noOfDiscs = 8;
     this.state = {
       loaded: false,
     }
@@ -29,7 +30,7 @@ class Game extends React.Component {
         <Tower key={n} 
                idx={n} 
                delay={this.props.delay + 500} 
-               noOfDiscs={n === 0 ? this.noOfDiscs : 0} 
+               noOfDiscs={n === 0 ? this.props.discsNum : 0} 
                setEndTower={(tower) => this.props.setEndTower(tower)}
                />
       ))
@@ -45,4 +46,4 @@ class Game extends React.Component {
   }
 }
 
-export default DragDropContext(HTML5Backend)(connect(null, mdp)(Game));
+export default DragDropContext(HTML5Backend)(connect(msp, mdp)(Game));
