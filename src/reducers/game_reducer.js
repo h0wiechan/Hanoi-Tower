@@ -24,7 +24,7 @@ const GameReducer = (state = defaultState, action) => {
       const disc = startTower.shift(); // Take out disc
       newState.removedDisc = disc; // Store disc'
       let endTower = newState.status[newState.endTower];
-      if (!endTower[0] || newState.removedDisc < endTower[0]) {
+      if (typeof endTower[0] !== 'number' || newState.removedDisc < endTower[0]) {
         endTower.unshift(newState.removedDisc);
       } else {
         let startTower = newState.status[newState.startTower];

@@ -49,11 +49,15 @@ class Tower extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.startTower && typeof nextProps.startTower === 'number') {
+    if (!this.props.startTower && typeof nextProps.startTower === 'number' && (nextProps.startTower === nextProps.idx || nextProps.endTower === nextProps.idx)) {
       this.setState({
         discs: nextProps.status[nextProps.idx]
       });
       this.props.resetForNextMove();
+      console.log(nextProps.status);
+      console.log(`removedDisc: ${nextProps.removedDisc}`)
+      console.log(`startTower: ${nextProps.startTower}`)
+      console.log(`endTower: ${nextProps.endTower}`)
     }
   }
 
