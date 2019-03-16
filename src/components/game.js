@@ -24,6 +24,12 @@ class Game extends React.Component {
     setTimeout(() => this.setState({loaded: true}), this.props.delay);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.status[this.props.status.length - 1] === this.props.discsNum) {
+      
+    }
+  }
+
   startGame() {
     return (
       createArrayOfLength(3).map((n) => (

@@ -30,6 +30,7 @@ const GameReducer = (state = defaultState, action) => {
         let startTower = newState.status[newState.startTower];
         startTower.unshift(newState.removedDisc);
       }
+      newState.moves += 1;
       return newState;
     case RESET_FOR_NEXT_MOVE:
       newState.removedDisc = null;

@@ -4,7 +4,6 @@ export const RESET_FOR_NEXT_MOVE = 'RESET_FOR_NEXT_MOVE';
 
 export const moveDiscFrom = (tower) => ({
   type: MOVE_DISC_FROM,
-  tower
 })
 
 export const resetForNextMove = () => ({
