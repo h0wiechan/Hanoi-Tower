@@ -9,6 +9,10 @@
     transition: 0.5s all ease-in;
 }
 
+.hovered {
+    color: red;
+}
+
 /* Header */
 #app-header {
     display: flex;
@@ -38,7 +42,14 @@
     justify-content: space-around;
     margin: 0 auto 1rem auto;
     padding: 1rem 0;
+    transition: 0.1s all ease-in;
     width: 60em;
+}
+
+#panel:hover {
+    border-radius: 1em;
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.60);
+    transition: 0.1s all ease-in;
 }
 
 #game-info {
@@ -71,6 +82,7 @@
 
 .controller {
     font-size: 1rem;
+    cursor: pointer;
 }
 
 

@@ -8,9 +8,7 @@ span, article, footer, time, small {
   border: 0;
   outline: 0;
   font: inherit;
-  font-family: inherit;
-  --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  font-family: 'Roboto', sans-serif;
   color: inherit;
   text-align: center; /* no paragraphs in body */
   text-decoration: inherit;

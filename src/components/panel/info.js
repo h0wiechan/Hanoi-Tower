@@ -8,6 +8,13 @@ const mdp = (dispatch) => ({
 });
 
 class Info extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hovered: false,
+    }
+  }
+    
   renderValueContainer() {
     switch(this.props.klass) {
       case 'discs':
@@ -39,8 +46,8 @@ class Info extends React.Component {
         break;
     }
     return (
-      <div className='info' style={this.props.klass === 'discs' ? { paddingBottom: '1rem' } : {}}>
-        <p className='label'>{this.label}</p>
+      <div className='info' onMouseEnter={() => this.setState({ hovered: true })} onMouseLeave={() => this.setState({ hovered: false })}  style={this.props.klass === 'discs' ? { paddingBottom: '1rem' } : {}}>
+        <p className={this.state.hovered ? 'label hovered' : 'label'}>{this.label}</p>
         {this.renderValueContainer()}
       </div>
     );
