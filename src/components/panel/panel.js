@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Info from './info';
+import Button from '../button';
 
 const msp = (state) => (state.game);
 
@@ -17,7 +18,7 @@ class Panel extends React.Component {
           <Info klass='moves'/>
         </div>
         <div id='buttons'>
-          <button>RESTART</button>
+          <Button klass='restart'/>
         </div>
       </div>
     );

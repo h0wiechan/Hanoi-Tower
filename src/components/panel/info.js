@@ -8,9 +8,6 @@ const mdp = (dispatch) => ({
 });
 
 class Info extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   renderValueContainer() {
     switch(this.props.klass) {
       case 'discs':
@@ -50,4 +47,4 @@ class Info extends React.Component {
   }
 }
 
-export default Info;
+export default connect(msp, mdp)(Info);
