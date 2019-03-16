@@ -1,12 +1,12 @@
-import { MOVE_DISC_FROM, SET_END_TOWER, RESET_FOR_NEXT_MOVE } from '../actions/game_actions';
+import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
 import { createTowersArray } from '../util/game_util';
 
-const defaultDiscNum = 4;
+const defaultDiscNum = 3;
 
 const defaultState = {
   discsNum: defaultDiscNum,
   moves: 0,
-  minMoves: 255,
+  minMoves: Math.pow(2, defaultDiscNum) - 1,
   status: createTowersArray(defaultDiscNum),
   startTower: null,
   endTower: null,
@@ -17,6 +17,9 @@ const GameReducer = (state = defaultState, action) => {
   Object.freeze(state);
   let newState = JSON.parse(JSON.stringify(state));
   switch(action.type) {
+    case SET_END_TOWER:
+      newState.endTower = action.tower;
+      return newState;
     case MOVE_DISC_FROM:
       let startTower = action.tower; 
       newState.startTower = startTower;
@@ -37,8 +40,13 @@ const GameReducer = (state = defaultState, action) => {
       newState.startTower = null;
       newState.endTower = null;
       return newState;
-    case SET_END_TOWER:
-      newState.endTower = action.tower;
+    case INCREMENT_DISCS_NUM:
+      newState.discsNum += 1;
+      newState.minMoves = Math.pow(2, newState.discsNum) - 1;
+      return newState;
+    case DECREMENT_DISCS_NUM:
+      newState.discsNum += 1;
+      newState.minMoves = Math.pow(2, newState.discsNum) - 1;
       return newState;
     default:
       return state;
