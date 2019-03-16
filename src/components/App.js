@@ -10,7 +10,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <Header delay={500}/>
-        <Panel />
+        <Panel delay={1000}/>
         <Game delay={1500}/>
       </div>
     );

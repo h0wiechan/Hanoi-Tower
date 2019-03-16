@@ -23,7 +23,7 @@ class Info extends React.Component {
             <p className='label'>{this.props.discsNum}</p>
             <div id='discs-controller'>
               <p className='controller'>+</p>
-              <p className='controller'>-</p>
+              <p className='controller' style={{transform: 'scale(1.7)'}}>-</p>
             </div>
           </div>
         );

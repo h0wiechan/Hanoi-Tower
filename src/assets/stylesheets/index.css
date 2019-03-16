@@ -10,7 +10,8 @@
 }
 
 .hovered {
-    color: red;
+    color: #e5453d;
+    transition: 0.1s all ease-in;
 }
 
 /* Header */
@@ -42,7 +43,7 @@
     justify-content: space-around;
     margin: 0 auto 1rem auto;
     padding: 1rem 0;
-    transition: 0.1s all ease-in;
+    transition: 0.5s all ease-in;
     width: 60em;
 }
 
@@ -54,10 +55,7 @@
 
 #game-info {
     width: 100%;
-}
-
-#buttons {
-    width: 100%;
+    transition: 0.5s all ease-in;
 }
 
 .info {
@@ -67,6 +65,7 @@
 
 .label {
     align-self: center;
+    transition: 0.1s all ease-in;
 }
 
 #value-container {
@@ -85,6 +84,36 @@
     cursor: pointer;
 }
 
+.controller {
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.1s all ease-in;
+}
+
+.controller:hover {
+    color: #e5453d;
+    transition: 0.1s all ease-in;
+}
+
+#buttons {
+    width: 100%;
+    transition: 0.5s all ease-in;
+}
+
+.game-starter {
+    background: #c3443d;
+    border-radius: 0.5rem;
+    color: #d4d5d7;
+    padding: 0.3rem 1.5rem;
+    text-transform: capitalize;
+    transition: 0.1s all ease-in;
+}
+
+.game-starter:hover {
+    background: #e5453d;
+    color: #f7f8fb;
+    transition: 0.1s all ease-in;
+}
 
 
 /* Playground */
