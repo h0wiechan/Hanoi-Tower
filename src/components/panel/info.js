@@ -13,16 +13,16 @@ class Info extends React.Component {
       case 'discs':
         return (
           <div id='value-container'>
-            <p>{this.props.discsNum}</p>
-            <div>
-              <p>+</p>
-              <p>-</p>
+            <p className='label'>{this.props.discsNum}</p>
+            <div id='discs-controller'>
+              <p className='controller'>+</p>
+              <p className='controller'>-</p>
             </div>
           </div>
         );
       case 'moves':
         return (
-          <p>{`${this.props.moves} (${this.props.minMoves})`}</p>
+          <p className='label'>{`${this.props.moves} (${this.props.minMoves})`}</p>
         );
     }
   }
@@ -39,8 +39,8 @@ class Info extends React.Component {
         break;
     }
     return (
-      <div class='info'>
-        <p class='label'>{this.label}</p>
+      <div className='info' style={this.props.klass === 'discs' ? { paddingBottom: '1rem' } : {}}>
+        <p className='label'>{this.label}</p>
         {this.renderValueContainer()}
       </div>
     );

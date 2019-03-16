@@ -36,7 +36,8 @@
     display: flex;
     height: 5em;
     justify-content: space-around;
-    margin: 0 auto;
+    margin: 0 auto 1rem auto;
+    padding: 1rem 0;
     width: 60em;
 }
 
@@ -53,8 +54,23 @@
     justify-content: space-around;
 }
 
+.label {
+    align-self: center;
+}
+
 #value-container {
     display: flex;
+    left: 0.15rem;
+    position: relative;
+}
+
+#discs-controller {
+    position: relative;
+    left: 1rem;
+}
+
+.controller {
+    font-size: 1rem;
 }
 
 
