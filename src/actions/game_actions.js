@@ -1,6 +1,5 @@
 export const MOVE_DISC_FROM = 'MOVE_DISC_FROM';
 export const SET_END_TOWER = 'SET_END_TOWER';
-export const RESET_DISCS = 'RESET_DISCS';
 export const RESET_FOR_NEXT_MOVE = 'RESET_FOR_NEXT_MOVE';
 
 export const moveDiscFrom = (tower) => ({

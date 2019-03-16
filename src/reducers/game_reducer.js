@@ -1,7 +1,7 @@
 import { MOVE_DISC_FROM, SET_END_TOWER, RESET_FOR_NEXT_MOVE } from '../actions/game_actions';
 import { createTowersArray } from '../util/game_util';
 
-const defaultDiscNum = 3;
+const defaultDiscNum = 4;
 
 const defaultState = {
   discsNum: defaultDiscNum,

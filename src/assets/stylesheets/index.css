@@ -4,6 +4,11 @@
     transition: 0.5s all ease-in;
 }
 
+.lifted {
+    opacity: 0;
+    transition: 0.5s all ease-in;
+}
+
 /* Header */
 #app-header {
     display: flex;
@@ -40,10 +45,14 @@
 }
 
 #playground .tower {
+    align-items: flex-end;
     background: black;
     border-left: 9em solid #e5e5e5;
     border-right: 9em solid #e5e5e5;
     border-bottom: 2em solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     width: 15em;
     height: 15em;
     transition: 0.3s all ease-in;
@@ -51,6 +60,7 @@
 
 #playground .tower .disc {
     height: 1.8em;
+    width: 100%;
     position: relative;
-    transition: 0.5s all ease-in;
+    transition: 0.2s all ease-in;
 }

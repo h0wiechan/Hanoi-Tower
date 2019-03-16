@@ -30,7 +30,8 @@ class Tower extends React.Component {
     super(props);
     this.state = {
       loaded: false,
-      discs: createArrayOfLength(this.props.noOfDiscs),
+      oldDiscs: null,
+      newDiscs: createArrayOfLength(this.props.noOfDiscs),
     }
     this.colors = {
       0: '#E02936', // red
@@ -51,7 +52,8 @@ class Tower extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.startTower && typeof nextProps.startTower === 'number' && (nextProps.startTower === nextProps.idx || nextProps.endTower === nextProps.idx)) {
       this.setState({
-        discs: nextProps.status[nextProps.idx]
+        oldDisc: this.state.newDiscs,
+        newDiscs: nextProps.status[nextProps.idx]
       });
       this.props.resetForNextMove();
       console.log(nextProps.status);
@@ -62,19 +64,20 @@ class Tower extends React.Component {
   }
 
   generateDiscs() {
-    this.idx = this.props.idx;
+    const { idx, delay } = this.props;
     return (
-      this.state.discs.map((i) => {
+      this.state.newDiscs.map((i) => {
         const style = {
           background: this.colors[i],
           transform: `scaleX(${2.0 + 1 * i})`,
         }
         return <Disc key={i} 
-                     i={this.state.discs.indexOf(i)}
-                     tower={this.idx}
-                     towerHeight={this.state.discs.length}
+                     i={this.state.newDiscs.indexOf(i)}
+                     tower={idx}
+                     towerHeight={this.state.newDiscs.length}
                      styling={style} 
-                     delay={this.props.delay + 100 * (this.state.discs.length - (i + 1))} 
+                     delay={delay + 250 * (this.state.newDiscs.length - (i + 1))} 
+                     isOldDisc={this.state.oldDiscs && this.state.oldDiscs.includes(i) && this.state.newDiscs.includes(i)}
                      moveDiscFrom={(tower) => this.props.moveDiscFrom(tower)}
                     />
       })

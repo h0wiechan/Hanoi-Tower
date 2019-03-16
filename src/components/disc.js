@@ -33,16 +33,6 @@ class Disc extends React.Component {
       loaded: false,
       towerHeight: this.props.towerHeight,
     }
-    this.yDiffs = {
-      1: '13.0em', 
-      2: '11.0em', 
-      3: '9.5em', 
-      4: '7.5em',
-      5: '5.8em',
-      6: '4.0em',
-      7: '2.0em',
-      8: '.4em'
-    }
   }
 
   componentDidMount() {
@@ -50,18 +40,15 @@ class Disc extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.towerHeight !== nextProps.towerHeight) this.setState({ towerHeight: nextProps.towerHeight });
+    if (this.props.towerHeight !== nextProps.towerHeight) {
+      this.setState({ towerHeight: nextProps.towerHeight })
+    };
   }
   
   render() {
-    let { background, transform } = this.props.styling;
-    const style = {
-      background,
-      transform: `${transform} translateY(${this.yDiffs[this.state.towerHeight]})` 
-    };
     const { connectDragSource, isDragging } = this.props;
     return connectDragSource(
-      <li className={this.state.loaded ? "disc" : "disc hidden"} style={this.state.loaded ? style :this.props.styling}></li>
+      <li className={ this.state.loaded ? "disc" : "disc hidden"} style={this.props.styling}></li>
     );
   }
 }
