@@ -21,6 +21,7 @@ const GameReducer = (state = defaultState, action) => {
       newState.endTower = action.tower;
       return newState;
     case MOVE_DISC_FROM:
+
       let startTower = action.tower; 
       newState.startTower = startTower;
       startTower = newState.status[startTower]; // Set the exact tower
@@ -41,12 +42,16 @@ const GameReducer = (state = defaultState, action) => {
       newState.endTower = null;
       return newState;
     case INCREMENT_DISCS_NUM:
+      if (newState.discsNum === 8) return newState;
       newState.discsNum += 1;
       newState.minMoves = Math.pow(2, newState.discsNum) - 1;
+      newState.status = [createTowersArray(newState.discsNum),[], []]
       return newState;
     case DECREMENT_DISCS_NUM:
-      newState.discsNum += 1;
+      if (newState.discsNum === 3) return newState;
+      newState.discsNum -= 1;
       newState.minMoves = Math.pow(2, newState.discsNum) - 1;
+      newState.status = [createTowersArray(newState.discsNum),[], []]
       return newState;
     default:
       return state;

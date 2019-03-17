@@ -13,6 +13,7 @@ export const setEndTower = (tower) => ({
 
 export const moveDiscFrom = (tower) => ({
   type: MOVE_DISC_FROM,
+  tower
 })
 
 export const resetForNextMove = () => ({

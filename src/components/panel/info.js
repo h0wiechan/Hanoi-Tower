@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { incrementDiscsNum, decrementDiscsNum } from '../../actions/game_actions';
 
 const msp = (state) => (state.game);
 
 const mdp = (dispatch) => ({
-  
+  incrementDiscsNum: () => dispatch(incrementDiscsNum()),
+  decrementDiscsNum: () => dispatch(decrementDiscsNum()),
 });
 
 class Info extends React.Component {
@@ -22,8 +24,8 @@ class Info extends React.Component {
           <div id='value-container'>
             <p className='label'>{this.props.discsNum}</p>
             <div id='discs-controller'>
-              <p className='controller'>+</p>
-              <p className='controller' style={{transform: 'scale(1.7)'}}>-</p>
+              <p className='controller' onClick={() => this.props.incrementDiscsNum()}>+</p>
+              <p className='controller' onClick={() => this.props.decrementDiscsNum()} style={{transform: 'scale(1.7)'}}>-</p>
             </div>
           </div>
         );
