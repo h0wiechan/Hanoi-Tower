@@ -27,26 +27,24 @@ class Game extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.discsNum !== nextProps.discsNum) {
-      debugger
       this.setState({ discsNum: nextProps.discsNum });
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return true;
+  // }
   
-  componentWillUpdate(nextProps, nextState) {
-  }
+  // componentWillUpdate(nextProps, nextState) {
+  // }
 
-  startGame(discsNum) {
-    debugger
+  startGame() {
     return (
       createArrayOfLength(3).map((n) => (
         <Tower key={n} 
                idx={n} 
                delay={this.props.delay + 500} 
-               noOfDiscs={n === 0 ? discsNum : 0} 
+               noOfDiscs={n === 0 ? this.state.discsNum : 0} 
                setEndTower={(tower) => this.props.setEndTower(tower)}
                />
       ))
@@ -56,7 +54,7 @@ class Game extends React.Component {
   render() {
     return (
       <div id="playground" className={this.state.loaded ? '' : 'hidden'}>
-        {this.startGame(this.state.discsNum)}
+        {this.startGame()}
       </div>
     );
   }

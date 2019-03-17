@@ -53,13 +53,11 @@ class Tower extends React.Component {
       this.setState({
         discs: nextProps.status[nextProps.idx]
       });
-      this.props.resetForNextMove();
-      console.log(nextProps.status);
-      console.log(`removedDisc: ${nextProps.removedDisc}`)
-      console.log(`startTower: ${nextProps.startTower}`)
-      console.log(`endTower: ${nextProps.endTower}`)
+      // this.props.resetForNextMove();
     }
-    if (this.props.noOfDiscs !== nextProps.noOfDiscs) {
+    debugger
+    if (this.props.noOfDiscs !== nextProps.noOfDiscs || (typeof this.props.startTower === 'number' && nextProps.startTower === null)) {
+      debugger
       this.setState({ discs: createArrayOfLength(nextProps.noOfDiscs), });
     }
   }
@@ -74,7 +72,7 @@ class Tower extends React.Component {
         }
         return <Disc key={i} 
                      i={this.state.discs.indexOf(i)}
-                     tower={idx}
+                     tower={idx} 
                      towerHeight={this.state.discs.length}
                      styling={style} 
                      delay={delay + 250 * (this.state.discs.length - (i + 1))} 
