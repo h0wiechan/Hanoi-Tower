@@ -149,3 +149,18 @@
     position: relative;
     transition: 0.2s all ease-in;
 }
+
+#modal-container {
+    position: absolute;
+    top: 20.5rem;
+    width: 60em;
+    height: 20em;
+}
+
+#loader {
+    width: 2.5rem;
+    height: auto;
+    left: 1rem;
+    top: 1rem;
+    position: relative;
+}

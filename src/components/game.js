@@ -5,6 +5,7 @@ import { DragDropContext } from 'react-dnd';
 import { setEndTower } from '../actions/game_actions'; 
 import { createArrayOfLength } from '../util/general_util';
 import Tower from './tower';
+import Modal from './modal';
 
 const msp = (state) => ( state.game );
 
@@ -55,6 +56,7 @@ class Game extends React.Component {
     return (
       <div id="playground" className={this.state.loaded ? '' : 'hidden'}>
         {this.startGame()}
+        <Modal klass="loading"/>
       </div>
     );
   }

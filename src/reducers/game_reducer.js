@@ -1,4 +1,4 @@
-import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
+import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, ACTIVATE_GAME, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
 import { createTowersArray } from '../util/game_util';
 import { createArrayOfLength } from '../util/general_util';
 
@@ -12,6 +12,7 @@ const defaultState = {
   startTower: null,
   endTower: null,
   removedDisc: null,
+  isActive: true,
 }
 
 const GameReducer = (state = defaultState, action) => {
@@ -19,11 +20,13 @@ const GameReducer = (state = defaultState, action) => {
   let newState = JSON.parse(JSON.stringify(state));
   switch(action.type) {
     case SET_END_TOWER:
+      newState.isActive = false;
       newState.endTower = action.tower;
       return newState;
     case MOVE_DISC_FROM:
       let startTower = action.tower; 
       newState.startTower = startTower;
+      if (newState.startTower === newState.endTower) return newState
       startTower = newState.status[startTower]; // Set the exact tower
       const disc = startTower.shift(); // Take out disc
       newState.removedDisc = disc; // Store disc'
@@ -41,9 +44,13 @@ const GameReducer = (state = defaultState, action) => {
       newState.startTower = null;
       newState.endTower = null;
       return newState;
+    case ACTIVATE_GAME:
+      newState.isActive = true;
+      return newState;
     case INCREMENT_DISCS_NUM:
       if (newState.discsNum === 8) return newState;
       newState.discsNum += 1;
+      newState.moves = 0;
       newState.minMoves = Math.pow(2, newState.discsNum) - 1;
       newState.status = [createArrayOfLength(newState.discsNum),[], []]
       newState.removedDisc = null;
@@ -53,6 +60,7 @@ const GameReducer = (state = defaultState, action) => {
     case DECREMENT_DISCS_NUM:
       if (newState.discsNum === 3) return newState;
       newState.discsNum -= 1;
+      newState.moves = 0;
       newState.minMoves = Math.pow(2, newState.discsNum) - 1;
       newState.status = [createArrayOfLength(newState.discsNum),[], []]
       newState.removedDisc = null;

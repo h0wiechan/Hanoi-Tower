@@ -53,7 +53,6 @@ class Tower extends React.Component {
       this.setState({
         discs: nextProps.status[nextProps.idx]
       });
-      // this.props.resetForNextMove();
     }
     debugger
     if (this.props.noOfDiscs !== nextProps.noOfDiscs || (typeof this.props.startTower === 'number' && nextProps.startTower === null)) {
@@ -63,7 +62,7 @@ class Tower extends React.Component {
   }
 
   generateDiscs() {
-    const { idx, delay } = this.props;
+    const { idx, delay, moving } = this.props;
     return (
       this.state.discs.map((i) => {
         const style = {
@@ -75,7 +74,7 @@ class Tower extends React.Component {
                      tower={idx} 
                      towerHeight={this.state.discs.length}
                      styling={style} 
-                     delay={delay + 250 * (this.state.discs.length - (i + 1))} 
+                     delay={delay + 250 * (this.state.discs.length - (i + 1))}
                     //  isOldDisc={this.state.oldDiscs && this.state.oldDiscs.includes(i) && this.state.newDiscs.includes(i)}
                      moveDiscFrom={(tower) => this.props.moveDiscFrom(tower)}
                     />

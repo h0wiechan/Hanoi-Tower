@@ -1,6 +1,7 @@
 export const MOVE_DISC_FROM = 'MOVE_DISC_FROM';
 export const SET_END_TOWER = 'SET_END_TOWER';
 export const RESET_FOR_NEXT_MOVE = 'RESET_FOR_NEXT_MOVE';
+export const ACTIVATE_GAME = 'ACTIVATE_GAME';
 
 export const INCREMENT_DISCS_NUM = 'INCREMENT_DISCS_NUM';
 export const DECREMENT_DISCS_NUM = 'DECREMENT_DISCS_NUM';
@@ -20,6 +21,10 @@ export const resetForNextMove = () => ({
   type: RESET_FOR_NEXT_MOVE,
 })
 
+export const activateGame = () => ({
+  type: ACTIVATE_GAME,
+})
+
 // Game Settings
 
 export const incrementDiscsNum = () => ({
@@ -29,3 +34,4 @@ export const incrementDiscsNum = () => ({
 export const decrementDiscsNum = () => ({
   type: DECREMENT_DISCS_NUM,
 })
+
