@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
-import { moveDiscFrom, resetForNextMove } from '../actions/game_actions';
+import { moveDiscFrom, resetForNextMove, activateGame } from '../actions/game_actions';
 import { createArrayOfLength } from '../util/general_util';
 import Disc from './disc';
 
@@ -23,6 +23,7 @@ const msp = (state) => ( state.game );
 const mdp = (dispatch) => ({
   moveDiscFrom: (tower) => dispatch(moveDiscFrom(tower)),
   resetForNextMove: () => dispatch(resetForNextMove()),
+  activateGame: () => dispatch(activateGame()),
 });
 
 class Tower extends React.Component {
@@ -53,11 +54,9 @@ class Tower extends React.Component {
       this.setState({
         discs: nextProps.status[nextProps.idx]
       });
-    }
-    debugger
-    if (this.props.noOfDiscs !== nextProps.noOfDiscs || (typeof this.props.startTower === 'number' && nextProps.startTower === null)) {
-      debugger
-      this.setState({ discs: createArrayOfLength(nextProps.noOfDiscs), });
+      this.props.resetForNextMove();
+    } else if (this.props.noOfDiscs !== nextProps.noOfDiscs || this.props.totalDiscsNum !== nextProps.totalDiscsNum) {
+      this.setState({ discs: nextProps.status[nextProps.idx], });
     }
   }
 
@@ -77,6 +76,7 @@ class Tower extends React.Component {
                      delay={delay + 250 * (this.state.discs.length - (i + 1))}
                     //  isOldDisc={this.state.oldDiscs && this.state.oldDiscs.includes(i) && this.state.newDiscs.includes(i)}
                      moveDiscFrom={(tower) => this.props.moveDiscFrom(tower)}
+                     activateGame={() => this.props.activateGame()}
                     />
       })
     )

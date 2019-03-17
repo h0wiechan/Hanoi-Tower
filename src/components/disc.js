@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { activateGame } from '../actions/game_actions'
 import { DragSource } from 'react-dnd';
 
 const discSource = {
@@ -25,6 +27,9 @@ const collect = (connect, monitor) => ({
   isDragging: monitor.isDragging(),
 });
 
+const mdp = (dispatch) => ({
+  activateGame: () => dispatch(activateGame()),
+})
 
 class Disc extends React.Component {
   constructor(props) {
@@ -41,16 +46,21 @@ class Disc extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.towerHeight !== nextProps.towerHeight) {
-      this.setState({ towerHeight: nextProps.towerHeight })
+      this.setState({ towerHeight: nextProps.towerHeight });
     };
   }
   
+  // componentWillUpdate(prevProps, prevState) {
+  //   if (this.props.tower !== prevProps.tower) this.props.activateGame();
+  // }
+  
   render() {
     const { connectDragSource, isDragging } = this.props;
+    console.log('a')
     return connectDragSource(
       <li className={ this.state.loaded ? "disc" : "disc hidden"} style={this.props.styling}></li>
     );
   }
 }
 
-export default DragSource('disc-and-tower', discSource, collect)(Disc);
+export default DragSource('disc-and-tower', discSource, collect)(connect(null, mdp)(Disc));

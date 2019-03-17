@@ -7,8 +7,19 @@ const msp = (state) => ( state.game )
 class Modal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isActive: true,
+    }
     this.noneStyle = {
       display: 'none',
+    }
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isActive !== nextProps.isActive) {
+      this.setState({
+        isActive: nextProps.isActive
+      })
     }
   }
 
@@ -24,7 +35,7 @@ class Modal extends React.Component {
 
   render() {
     return (
-      <div id="modal-container" style={this.props.isActive ? this.noneStyle : {}}>
+      <div id="modal-container" style={this.state.isActive ? this.noneStyle : {}}>
         {this.renderModal()}
       </div>
     );

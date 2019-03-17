@@ -44,7 +44,8 @@ class Game extends React.Component {
       createArrayOfLength(3).map((n) => (
         <Tower key={n} 
                idx={n} 
-               delay={this.props.delay + 500} 
+               delay={this.props.delay + 500}
+               totalDiscsNum={this.state.discsNum} 
                noOfDiscs={n === 0 ? this.state.discsNum : 0} 
                setEndTower={(tower) => this.props.setEndTower(tower)}
                />
