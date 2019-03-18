@@ -8,22 +8,11 @@ const msp = (state) => ( state.modal )
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   isActive: true,
-    // }
     this.noneStyle = {
       display: 'none',
     }
   }
   
-//   componentWillReceiveProps(nextProps) {
-//     if (this.props.isActive !== nextProps.isActive) {
-//       this.setState({
-//         isActive: nextProps.isActive
-//       })
-//     }
-//   }
-
   renderModal() {
     switch(this.props.klass) {
       case 'loading':

@@ -17,7 +17,12 @@ class Info extends React.Component {
     super(props);
     this.state = {
       hovered: false,
-    }
+    };
+    this.movesStyle = {
+      display: 'flex',
+      width: '3.0rem',
+      justifyContent: 'space-around'
+    };
   }
 
   handleControl(mode) {
@@ -47,7 +52,7 @@ class Info extends React.Component {
         );
       case 'moves':
         return (
-          <p className='label'>{`${this.props.moves} (${this.props.minMoves})`}</p>
+          <p className='label' style={this.movesStyle}><span>{`${this.props.moves}`}</span><span>{`(${this.props.minMoves})`}</span></p>
         );
     }
   }

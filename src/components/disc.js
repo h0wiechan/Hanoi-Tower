@@ -1,7 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { activateGame } from '../actions/game_actions'
-import { removeModal } from '../actions/modal_actions'
 import { DragSource } from 'react-dnd';
 
 const discSource = {
@@ -12,7 +9,7 @@ const discSource = {
       startTower: props.tower
     };
   },
-  endDrag: (props, monitor, component) => {
+  endDrag: (props, monitor) => {
     if (props.i > 0 || !monitor.didDrop()) return {};
     console.log('B');
     props.moveDiscFrom(props.tower);
@@ -29,10 +26,6 @@ const collect = (connect, monitor) => ({
   isDragging: monitor.isDragging(),
 });
 
-const mdp = (dispatch) => ({
-  activateGame: () => dispatch(activateGame()),
-  removeModal: () => dispatch(removeModal()),
-})
 
 class Disc extends React.Component {
   constructor(props) {
@@ -61,4 +54,4 @@ class Disc extends React.Component {
   }
 }
 
-export default DragSource('disc-and-tower', discSource, collect)(connect(null, mdp)(Disc));
+export default DragSource('disc-and-tower', discSource, collect)(Disc);

@@ -1,6 +1,5 @@
 import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, RESTART_GAME, ACTIVATE_GAME, BUILD_TOWERS, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
 import { createTowersArray } from '../util/game_util';
-import { createArrayOfLength } from '../util/general_util';
 
 const defaultDiscNum = 3;
 
@@ -23,11 +22,9 @@ const GameReducer = (state = defaultState, action) => {
       newState.endTower = action.tower;
       return newState;
     case MOVE_DISC_FROM:
-      // debugger
       let startTower = action.tower; 
       newState.startTower = startTower;
       if (newState.startTower === newState.endTower) return newState
-      // newState.isActive = false;
       startTower = newState.status[startTower]; // Set the exact tower
       const disc = startTower.shift(); // Take out disc
       newState.removedDisc = disc; // Store disc'
@@ -49,9 +46,6 @@ const GameReducer = (state = defaultState, action) => {
       newState.status = createTowersArray(0);
       newState.moves = 0;
       return newState;
-    case ACTIVATE_GAME:
-      newState.isActive = true;
-      return newState;
     case BUILD_TOWERS:
       newState.status = createTowersArray(newState.discsNum);
       return newState;
@@ -61,7 +55,6 @@ const GameReducer = (state = defaultState, action) => {
       newState.moves = 0;
       newState.minMoves = Math.pow(2, newState.discsNum) - 1;
       newState.status = createTowersArray(0);
-      // newState.status = [createArrayOfLength(newState.discsNum),[], []]
       return newState;
     case DECREMENT_DISCS_NUM:
       if (newState.discsNum === 3) return newState;
@@ -69,7 +62,6 @@ const GameReducer = (state = defaultState, action) => {
       newState.moves = 0;
       newState.minMoves = Math.pow(2, newState.discsNum) - 1;
       newState.status = createTowersArray(0);
-      // newState.status = [createArrayOfLength(newState.discsNum),[], []]
       return newState;
     default:
       return state;

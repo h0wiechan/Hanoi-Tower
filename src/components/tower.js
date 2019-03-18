@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
-import { moveDiscFrom, resetForNextMove, activateGame } from '../actions/game_actions';
+import { moveDiscFrom, resetForNextMove } from '../actions/game_actions';
 import { enableModal, removeModal } from '../actions/modal_actions';
 import { towersAreChanged } from '../util/game_util';
 import { createArrayOfLength } from '../util/general_util';
@@ -25,7 +25,6 @@ const msp = (state) => ( state.game );
 const mdp = (dispatch) => ({
   moveDiscFrom: (tower) => dispatch(moveDiscFrom(tower)),
   resetForNextMove: () => dispatch(resetForNextMove()),
-  activateGame: () => dispatch(activateGame()),
   enableModal: (mode) => dispatch(enableModal(mode)),
   removeModal: () => dispatch(removeModal()),
 });
@@ -60,10 +59,6 @@ class Tower extends React.Component {
       });
       this.props.resetForNextMove();
       setTimeout(() => this.props.removeModal(), 1200);
-    // } else if (this.props.noOfDiscs !== nextProps.noOfDiscs || this.props.totalDiscsNum !== nextProps.totalDiscsNum || towersAreChanged(this.props.status, nextProps.status)) {
-    // } else if (towersAreChanged(this.props.status, nextProps.status)) {
-    //   this.setState({ discs: [], });
-    //   setTimeout(() => this.setState({ discs: nextProps.status[nextProps.idx], }), 50);
     }
 
   } 
@@ -82,9 +77,7 @@ class Tower extends React.Component {
                      towerHeight={this.state.discs.length}
                      styling={style} 
                      delay={delay + 250 * (this.state.discs.length - (i + 1))}
-                    //  isOldDisc={this.state.oldDiscs && this.state.oldDiscs.includes(i) && this.state.newDiscs.includes(i)}
                      moveDiscFrom={(tower) => this.props.moveDiscFrom(tower)}
-                     activateGame={() => this.props.activateGame()}
                      enableModal={(mode) => this.props.enableModal(mode)}
                     />
       })
