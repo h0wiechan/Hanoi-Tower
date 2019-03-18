@@ -9,11 +9,9 @@ export const createTowersArray = (n) => {
 }
 
 export const towersAreChanged = (towers1, towers2) => {
-  debugger
   for (let i = 0; i < Object.keys(towers1).length; i++) {
     const discs1 = towers1[i];
     const discs2 = towers2[i];
-    debugger
     if (discs1.length !== discs2.length) return true;
   }
   return false;

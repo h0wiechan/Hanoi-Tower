@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
-import { setEndTower } from '../actions/game_actions'; 
+import { setEndTower, buildTowers } from '../actions/game_actions'; 
 import { createArrayOfLength } from '../util/general_util';
 import { towersAreChanged } from '../util/game_util';
 import Tower from './tower';
@@ -12,6 +12,7 @@ const msp = (state) => ( state.game );
 
 const mdp = (dispatch) => ({
   setEndTower: (tower) => dispatch(setEndTower(tower)),
+  buildTowers: () => dispatch(buildTowers()),
 });
 
 class Game extends React.Component {
@@ -28,19 +29,14 @@ class Game extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger
-    if (this.props.discsNum !== nextProps.discsNum || towersAreChanged(this.props.status, nextProps.status)) {
-      debugger
+    if (towersAreChanged(this.props.status, nextProps.status)) {
       this.setState({ discsNum: nextProps.discsNum });
     }
   }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return true;
-  // }
   
-  // componentWillUpdate(nextProps, nextState) {
-  // }
+  componentDidUpdate() {
+    if (Object.values(this.props.status).every(tower => tower.length === 0)) this.props.buildTowers();
+  }
 
   startGame() {
     return (

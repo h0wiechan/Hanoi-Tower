@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { activateGame } from '../actions/game_actions'
+import { removeModal } from '../actions/modal_actions'
 import { DragSource } from 'react-dnd';
 
 const discSource = {
@@ -15,6 +16,7 @@ const discSource = {
     if (props.i > 0 || !monitor.didDrop()) return {};
     console.log('B');
     props.moveDiscFrom(props.tower);
+    props.enableModal('loading');
     return {
       startTower: props.tower
     };
@@ -29,6 +31,7 @@ const collect = (connect, monitor) => ({
 
 const mdp = (dispatch) => ({
   activateGame: () => dispatch(activateGame()),
+  removeModal: () => dispatch(removeModal()),
 })
 
 class Disc extends React.Component {
@@ -50,13 +53,8 @@ class Disc extends React.Component {
     };
   }
   
-  // componentWillUpdate(prevProps, prevState) {
-  //   if (this.props.tower !== prevProps.tower) this.props.activateGame();
-  // }
-  
   render() {
     const { connectDragSource, isDragging } = this.props;
-    console.log('a')
     return connectDragSource(
       <li className={ this.state.loaded ? "disc" : "disc hidden"} style={this.props.styling}></li>
     );

@@ -4,6 +4,7 @@ export const RESET_FOR_NEXT_MOVE = 'RESET_FOR_NEXT_MOVE';
 export const RESTART_GAME = 'RESTART_GAME';
 export const ACTIVATE_GAME = 'ACTIVATE_GAME';
 
+export const BUILD_TOWERS = 'BUILD_TOWERS';
 export const INCREMENT_DISCS_NUM = 'INCREMENT_DISCS_NUM';
 export const DECREMENT_DISCS_NUM = 'DECREMENT_DISCS_NUM';
 // Game Logics
@@ -31,6 +32,9 @@ export const activateGame = () => ({
 })
 
 // Game Settings
+export const buildTowers = () => ({
+  type: BUILD_TOWERS,
+});
 
 export const incrementDiscsNum = () => ({
   type: INCREMENT_DISCS_NUM,

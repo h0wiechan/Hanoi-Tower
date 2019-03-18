@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import { moveDiscFrom, resetForNextMove, activateGame } from '../actions/game_actions';
+import { enableModal, removeModal } from '../actions/modal_actions';
 import { towersAreChanged } from '../util/game_util';
 import { createArrayOfLength } from '../util/general_util';
 import Disc from './disc';
@@ -25,6 +26,8 @@ const mdp = (dispatch) => ({
   moveDiscFrom: (tower) => dispatch(moveDiscFrom(tower)),
   resetForNextMove: () => dispatch(resetForNextMove()),
   activateGame: () => dispatch(activateGame()),
+  enableModal: (mode) => dispatch(enableModal(mode)),
+  removeModal: () => dispatch(removeModal()),
 });
 
 class Tower extends React.Component {
@@ -51,19 +54,18 @@ class Tower extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // if () {
-    debugger
     if ((!this.props.startTower && typeof nextProps.startTower === 'number' && (nextProps.startTower === nextProps.idx || nextProps.endTower === nextProps.idx)) || towersAreChanged(this.props.status, nextProps.status)) {
-      debugger
       this.setState({
         discs: nextProps.status[nextProps.idx]
       });
       this.props.resetForNextMove();
-    } else if (this.props.noOfDiscs !== nextProps.noOfDiscs || this.props.totalDiscsNum !== nextProps.totalDiscsNum) {
-      
-      this.setState({ discs: [], });
-      setTimeout(() => this.setState({ discs: nextProps.status[nextProps.idx], }));
+      setTimeout(() => this.props.removeModal(), 1200);
+    // } else if (this.props.noOfDiscs !== nextProps.noOfDiscs || this.props.totalDiscsNum !== nextProps.totalDiscsNum || towersAreChanged(this.props.status, nextProps.status)) {
+    // } else if (towersAreChanged(this.props.status, nextProps.status)) {
+    //   this.setState({ discs: [], });
+    //   setTimeout(() => this.setState({ discs: nextProps.status[nextProps.idx], }), 50);
     }
+
   } 
 
   generateDiscs() {
@@ -83,6 +85,7 @@ class Tower extends React.Component {
                     //  isOldDisc={this.state.oldDiscs && this.state.oldDiscs.includes(i) && this.state.newDiscs.includes(i)}
                      moveDiscFrom={(tower) => this.props.moveDiscFrom(tower)}
                      activateGame={() => this.props.activateGame()}
+                     enableModal={(mode) => this.props.enableModal(mode)}
                     />
       })
     )

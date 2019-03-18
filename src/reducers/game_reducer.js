@@ -1,4 +1,4 @@
-import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, RESTART_GAME, ACTIVATE_GAME, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
+import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, RESTART_GAME, ACTIVATE_GAME, BUILD_TOWERS, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
 import { createTowersArray } from '../util/game_util';
 import { createArrayOfLength } from '../util/general_util';
 
@@ -32,18 +32,13 @@ const GameReducer = (state = defaultState, action) => {
       const disc = startTower.shift(); // Take out disc
       newState.removedDisc = disc; // Store disc'
       let endTower = newState.status[newState.endTower];
-      // debugger
       if (typeof endTower[0] !== 'number' || newState.removedDisc < endTower[0]) {
-        // debugger
         endTower.unshift(newState.removedDisc);
+        newState.moves += 1;
       } else {
-        // debugger
         let startTower = newState.status[newState.startTower];
         startTower.unshift(newState.removedDisc);
       }
-      // debugger
-      newState.moves += 1;
-      debugger
       return newState;
     case RESET_FOR_NEXT_MOVE:
       newState.removedDisc = null;
@@ -51,25 +46,30 @@ const GameReducer = (state = defaultState, action) => {
       newState.endTower = null;
       return newState;
     case RESTART_GAME:
-      newState.status = createTowersArray(newState.discsNum);
+      newState.status = createTowersArray(0);
       newState.moves = 0;
       return newState;
     case ACTIVATE_GAME:
       newState.isActive = true;
+      return newState;
+    case BUILD_TOWERS:
+      newState.status = createTowersArray(newState.discsNum);
       return newState;
     case INCREMENT_DISCS_NUM:
       if (newState.discsNum === 8) return newState;
       newState.discsNum += 1;
       newState.moves = 0;
       newState.minMoves = Math.pow(2, newState.discsNum) - 1;
-      newState.status = [createArrayOfLength(newState.discsNum),[], []]
+      newState.status = createTowersArray(0);
+      // newState.status = [createArrayOfLength(newState.discsNum),[], []]
       return newState;
     case DECREMENT_DISCS_NUM:
       if (newState.discsNum === 3) return newState;
       newState.discsNum -= 1;
       newState.moves = 0;
       newState.minMoves = Math.pow(2, newState.discsNum) - 1;
-      newState.status = [createArrayOfLength(newState.discsNum),[], []]
+      newState.status = createTowersArray(0);
+      // newState.status = [createArrayOfLength(newState.discsNum),[], []]
       return newState;
     default:
       return state;
