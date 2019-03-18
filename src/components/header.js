@@ -16,7 +16,7 @@ class Header extends React.Component {
     const logo = require('../assets/images/ToT.svg');
     return (
       <header id="app-header" className={this.state.loaded ? '' : 'hidden'}>
-        <img src={logo}></img>
+        <img src={logo} alt=""></img>
         <h1>Hanoi Tower</h1>
       </header>
     );

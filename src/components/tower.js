@@ -64,13 +64,13 @@ class Tower extends React.Component {
   } 
 
   generateDiscs() {
-    const { idx, delay, moving } = this.props;
+    const { idx, delay } = this.props;
     return (
       this.state.discs.map((i) => {
         const style = {
           background: this.colors[i],
           transform: `scaleX(${2.0 + 1 * i})`,
-        }
+        };
         return <Disc key={i} 
                      i={this.state.discs.indexOf(i)}
                      tower={idx} 
@@ -85,7 +85,7 @@ class Tower extends React.Component {
   }
 
   render() {
-    const { connectDropTarget, hovered, item } = this.props;
+    const { connectDropTarget, hovered } = this.props;
     const style = hovered ? { background: '#a1a1a1', borderBottomColor: '#a1a1a1' } : {};
     return connectDropTarget(
       <ul id={`tower-${this._reactInternalFiber.key}`} className={this.state.loaded ? 'tower' : 'tower hidden'} style={style}>

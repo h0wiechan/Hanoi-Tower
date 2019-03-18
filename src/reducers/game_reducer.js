@@ -1,4 +1,4 @@
-import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, RESTART_GAME, ACTIVATE_GAME, BUILD_TOWERS, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
+import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, RESTART_GAME, BUILD_TOWERS, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
 import { createTowersArray } from '../util/game_util';
 
 const defaultDiscNum = 3;

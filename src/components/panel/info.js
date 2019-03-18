@@ -33,6 +33,8 @@ class Info extends React.Component {
       case "decrement":
         this.props.decrementDiscsNum();
         break;
+      default:
+        break;
     }
     this.props.enableModal("loading");
     setTimeout(() => this.props.removeModal(), 1000);
@@ -54,6 +56,8 @@ class Info extends React.Component {
         return (
           <p className='label' style={this.movesStyle}><span>{`${this.props.moves}`}</span><span>{`(${this.props.minMoves})`}</span></p>
         );
+      default:
+        break;
     }
   }
 

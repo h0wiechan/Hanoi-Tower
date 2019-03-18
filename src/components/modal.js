@@ -16,7 +16,7 @@ class Modal extends React.Component {
   renderModal() {
     switch(this.props.klass) {
       case 'loading':
-        return <img id="loader" src={Loader}></img>;
+        return <img id="loader" src={Loader} alt="Loading"></img>;
       case 'game-over':
         const message = this.props.moves === this.props.minMoves ? "Wow! That was the perfect solution!" : "Congrats! You could do better though! ;)";
         return (

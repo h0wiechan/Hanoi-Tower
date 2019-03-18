@@ -47,7 +47,7 @@ class Disc extends React.Component {
   }
   
   render() {
-    const { connectDragSource, isDragging } = this.props;
+    const { connectDragSource } = this.props;
     return connectDragSource(
       <li className={ this.state.loaded ? "disc" : "disc hidden"} style={this.props.styling}></li>
     );
