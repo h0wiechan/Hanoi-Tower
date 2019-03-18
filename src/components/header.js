@@ -17,7 +17,7 @@ class Header extends React.Component {
     return (
       <header id="app-header" className={this.state.loaded ? '' : 'hidden'}>
         <img src={logo}></img>
-        <h1>Tower of Hanoi</h1>
+        <h1>Hanoi Tower</h1>
       </header>
     );
   }
