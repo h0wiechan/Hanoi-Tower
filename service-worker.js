@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/h0wiechan.com/Hanoi-Tower/precache-manifest.887116fbac2007abf9a090f3d3484920.js"
+  "/h0wiechan.github.io/Hanoi-Tower/precache-manifest.b7c9a7a3eedc34747d6df9309d5924fd.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/h0wiechan.com/Hanoi-Tower/index.html", {
+workbox.routing.registerNavigationRoute("/h0wiechan.github.io/Hanoi-Tower/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
