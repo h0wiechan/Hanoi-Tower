@@ -2,7 +2,7 @@
   "name": "tower-of-hanoi",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http:/h0wiechan.com/Hanoi-Tower",
+  "homepage": "http:/h0wiechan.github.io/Hanoi-Tower",
   "dependencies": {
     "react": "^16.8.4",
     "react-dnd": "^7.3.2",
