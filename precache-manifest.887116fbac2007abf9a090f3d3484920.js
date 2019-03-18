@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/h0wiechan.com/Hanoi-Tower/static/css/main.b7d25da8.chunk.css"
   },
   {
-    "revision": "1be4b600ce9b4130b8b366199f774d12",
+    "revision": "041f7f555fc08bd434260e6f9043de52",
     "url": "/h0wiechan.com/Hanoi-Tower/index.html"
   }
 ];
