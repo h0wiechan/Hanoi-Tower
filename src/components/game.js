@@ -4,6 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import { setEndTower } from '../actions/game_actions'; 
 import { createArrayOfLength } from '../util/general_util';
+import { towersAreChanged } from '../util/game_util';
 import Tower from './tower';
 import Modal from './modal';
 
@@ -27,7 +28,9 @@ class Game extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.discsNum !== nextProps.discsNum) {
+    debugger
+    if (this.props.discsNum !== nextProps.discsNum || towersAreChanged(this.props.status, nextProps.status)) {
+      debugger
       this.setState({ discsNum: nextProps.discsNum });
     }
   }

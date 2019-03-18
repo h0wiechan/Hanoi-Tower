@@ -1,4 +1,4 @@
-import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, ACTIVATE_GAME, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
+import { SET_END_TOWER, MOVE_DISC_FROM, RESET_FOR_NEXT_MOVE, RESTART_GAME, ACTIVATE_GAME, INCREMENT_DISCS_NUM, DECREMENT_DISCS_NUM } from '../actions/game_actions';
 import { createTowersArray } from '../util/game_util';
 import { createArrayOfLength } from '../util/general_util';
 
@@ -50,8 +50,11 @@ const GameReducer = (state = defaultState, action) => {
       newState.startTower = null;
       newState.endTower = null;
       return newState;
+    case RESTART_GAME:
+      newState.status = createTowersArray(newState.discsNum);
+      newState.moves = 0;
+      return newState;
     case ACTIVATE_GAME:
-      debugger
       newState.isActive = true;
       return newState;
     case INCREMENT_DISCS_NUM:

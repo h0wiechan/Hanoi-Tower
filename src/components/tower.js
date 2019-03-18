@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import { moveDiscFrom, resetForNextMove, activateGame } from '../actions/game_actions';
+import { towersAreChanged } from '../util/game_util';
 import { createArrayOfLength } from '../util/general_util';
 import Disc from './disc';
 
@@ -50,7 +51,10 @@ class Tower extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.startTower && typeof nextProps.startTower === 'number' && (nextProps.startTower === nextProps.idx || nextProps.endTower === nextProps.idx)) {
+    // if () {
+    debugger
+    if ((!this.props.startTower && typeof nextProps.startTower === 'number' && (nextProps.startTower === nextProps.idx || nextProps.endTower === nextProps.idx)) || towersAreChanged(this.props.status, nextProps.status)) {
+      debugger
       this.setState({
         discs: nextProps.status[nextProps.idx]
       });
@@ -60,7 +64,7 @@ class Tower extends React.Component {
       this.setState({ discs: [], });
       setTimeout(() => this.setState({ discs: nextProps.status[nextProps.idx], }));
     }
-  }
+  } 
 
   generateDiscs() {
     const { idx, delay, moving } = this.props;
