@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { incrementDiscsNum, decrementDiscsNum } from '../../actions/game_actions';
-import { enableModal, removeModal } from '../../actions/modal_actions';
+import { enableModal, removeModal } from '../../actions/ui_actions';
 
 const msp = (state) => (state.game);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { restartGame } from '../actions/game_actions'
-import { enableModal } from '../actions/modal_actions'
+import { enableModal } from '../actions/ui_actions'
 
 const msp = (state) => (state.game);
 

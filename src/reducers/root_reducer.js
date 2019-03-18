@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import game from './game_reducer';
-import modal from './modal_reducer';
+import ui from './ui_reducer';
 
 const RootReducer = combineReducers({
     game,
-    modal
+    ui
 });
 
 export default RootReducer;

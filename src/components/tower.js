@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import { moveDiscFrom, resetForNextMove } from '../actions/game_actions';
-import { enableModal, removeModal } from '../actions/modal_actions';
+import { enableModal, removeModal } from '../actions/ui_actions';
 import { towersAreChanged } from '../util/game_util';
 import { createArrayOfLength } from '../util/general_util';
 import Disc from './disc';
@@ -53,9 +53,9 @@ class Tower extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if ((!this.props.startTower && typeof nextProps.startTower === 'number' && (nextProps.startTower === nextProps.idx || nextProps.endTower === nextProps.idx)) || towersAreChanged(this.props.status, nextProps.status)) {
+    if ((!this.props.startTower && typeof nextProps.startTower === 'number' && (nextProps.startTower === nextProps.idx || nextProps.endTower === nextProps.idx)) || towersAreChanged(this.props.discs, nextProps.discs)) {
       this.setState({
-        discs: nextProps.status[nextProps.idx]
+        discs: nextProps.discs[nextProps.idx]
       });
       this.props.resetForNextMove();
       setTimeout(() => this.props.removeModal(), 1200);

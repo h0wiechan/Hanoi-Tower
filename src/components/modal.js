@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Button from './button';
 import Loader from '../assets/images/loader.gif'
 
-const msp = (state) => ( state.modal )
+const msp = (state) => ( state.ui )
 
 class Modal extends React.Component {
   constructor(props) {

@@ -1,10 +1,10 @@
-import { ENABLE_MODAL, REMOVE_MODAL } from '../actions/modal_actions';
+import { ENABLE_MODAL, REMOVE_MODAL } from '../actions/ui_actions';
 
 const defaultState = {
   mode: false,
 }
 
-const ModalReducer = (state = defaultState, action) => {
+const UIReducer = (state = defaultState, action) => {
   Object.freeze(state);
   let newState = JSON.parse(JSON.stringify(state));
   switch(action.type) {
@@ -19,4 +19,4 @@ const ModalReducer = (state = defaultState, action) => {
   }
 }
 
-export default ModalReducer;
+export default UIReducer;
