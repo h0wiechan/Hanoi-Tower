@@ -56,7 +56,9 @@ class Tower extends React.Component {
       });
       this.props.resetForNextMove();
     } else if (this.props.noOfDiscs !== nextProps.noOfDiscs || this.props.totalDiscsNum !== nextProps.totalDiscsNum) {
-      this.setState({ discs: nextProps.status[nextProps.idx], });
+      
+      this.setState({ discs: [], });
+      setTimeout(() => this.setState({ discs: nextProps.status[nextProps.idx], }));
     }
   }
 
