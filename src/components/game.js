@@ -3,16 +3,27 @@ import { connect } from 'react-redux';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import { setEndTower, buildTowers } from '../actions/game_actions'; 
+import { enableModal } from '../actions/modal_actions'; 
 import { createArrayOfLength } from '../util/general_util';
 import { towersAreChanged } from '../util/game_util';
 import Tower from './tower';
 import Modal from './modal';
 
-const msp = (state) => ( state.game );
+const msp = (state) => {
+  const { discsNum, status, moves, minMoves } = state.game;
+  return {
+    discsNum,
+    status,
+    moves,
+    minMoves,
+    mode: state.modal.mode,
+  }
+};
 
 const mdp = (dispatch) => ({
   setEndTower: (tower) => dispatch(setEndTower(tower)),
   buildTowers: () => dispatch(buildTowers()),
+  enableModal: (mode) => dispatch(enableModal(mode)),
 });
 
 class Game extends React.Component {
@@ -35,7 +46,11 @@ class Game extends React.Component {
   }
   
   componentDidUpdate() {
-    if (Object.values(this.props.status).every(tower => tower.length === 0)) this.props.buildTowers();
+    if (Object.values(this.props.status).every(tower => tower.length === 0)) {
+      this.props.buildTowers();
+    } else if (this.props.status[2].length === this.props.discsNum && this.props.mode !== 'game-over') {
+      setTimeout(() => this.props.enableModal('game-over'), 3000);
+    };
   }
 
   startGame() {
@@ -56,7 +71,7 @@ class Game extends React.Component {
     return (
       <div id="playground" className={this.state.loaded ? '' : 'hidden'}>
         {this.startGame()}
-        <Modal klass="loading"/>
+        <Modal klass={this.props.mode} moves={this.props.moves} minMoves={this.props.minMoves} />
       </div>
     );
   }

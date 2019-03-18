@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Button from './button';
 import Loader from '../assets/images/loader.gif'
 
 const msp = (state) => ( state.modal )
@@ -28,6 +29,13 @@ class Modal extends React.Component {
       case 'loading':
         return <img id="loader" src={Loader}></img>;
       case 'game-over':
+        const message = this.props.moves === this.props.minMoves ? "Wow! That was the perfect solution!" : "Congrats! You could do better though! ;)";
+        return (
+          <div id="modal">
+            <p id="modal-message">{message}</p>
+            <Button klass="play again"/>
+          </div>
+        )
       default:
         return ;
     }
@@ -35,7 +43,7 @@ class Modal extends React.Component {
 
   render() {
     return (
-      <div id="modal-container" style={this.props.mode ? {}: this.noneStyle}>
+      <div id={`${this.props.klass === "loading" ? "loader" : "modal"}-container`} style={this.props.mode ? {}: this.noneStyle}>
         {this.renderModal()}
       </div>
     );
